@@ -53,27 +53,47 @@
     <h1>{{ dynasty.name }}</h1>
     <p>{{ dynasty.description }}</p>
 
-    <!-- Coach Section -->
-    <div class="section">
-        <h2>Coach</h2>
-        {% if dynasty.coach %}
-            <p><strong>Name:</strong> {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</p>
-            <p><strong>College:</strong> {{ dynasty.coach.college }}</p>
-            {% if dynasty.coach.alma_mater %}
-                <p><strong>Alma Mater:</strong> {{ dynasty.coach.alma_mater }}</p>
-            {% endif %}
-            <p><strong>Year:</strong> {{ dynasty.coach.year }}</p>
-            <a href="{{ url_for('edit_coach_page', dynasty_id=dynasty.id) }}">
-                <button>Edit Coach</button>
-            </a>
-        {% else %}
-            <p>No coach assigned.</p>
-        {% endif %}
-    </div>
+    <!-- Coach -->
+    <h2>Coach</h2>
+    <p><strong>Name:</strong> {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</p>
+    <p><strong>College:</strong> {{ dynasty.coach.college }}</p>
+    {% if dynasty.coach.alma_mater %}
+        <p><strong>Alma Mater:</strong> {{ dynasty.coach.alma_mater }}</p>
+    {% endif %}
+    <p><strong>Year:</strong> {{ dynasty.coach.year }}</p>
+    <a href="{{ url_for('edit_coach_page', dynasty_id=dynasty.id) }}">
+        <button>Edit Coach</button>
+    </a>
 
+    <!-- Seasons -->
+    <h2>Seasons</h2>
+    {% if dynasty.coach.seasons %}
+        <ul>
+            {% for season in dynasty.coach.seasons %}
+                <li>
+                    <strong>{{ season.year }}</strong>: {{ season.wins }}–{{ season.losses }}
+                    {% if season.bowl_game %} | Bowl: {{ season.bowl_game }} {% endif %}
+                    {% if season.trophies %} | Trophies: {{ season.trophies | join(", ") }} {% endif %}
 
-    <div class="back-link">
-        <a href="/select">Back to Dynasty Selection</a>
-    </div>
+                    <a href="{{ url_for('edit_season', dynasty_id=dynasty.id, season_id=season.id) }}">
+                        <button>Edit</button>
+                    </a>
+                    <form action="{{ url_for('delete_season', dynasty_id=dynasty.id, season_id=season.id) }}"
+                          method="POST" style="display:inline;">
+                        <button type="submit" style="background:red; color:white;">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No seasons recorded yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('add_season', dynasty_id=dynasty.id) }}">
+        <button>Add Season</button>
+    </a>
+
+    <br><br>
+    <a href="/home">Back to Menu</a>
 </body>
 </html>

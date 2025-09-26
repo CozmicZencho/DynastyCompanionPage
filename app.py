@@ -43,6 +43,16 @@ def dynasty_page(dynasty_id):
     dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
     if not dynasty:
         return "<h1>Dynasty not found</h1>", 404
+
+    # Ensure seasons have IDs
+    if "seasons" in dynasty["coach"]:
+        next_id = 1
+        for s in dynasty["coach"]["seasons"]:
+            if "id" not in s:
+                s["id"] = next_id
+                next_id += 1
+        save_dynasties(dynasties)
+
     return render_template("dynasty_page.html", dynasty=dynasty)
 
 # -------------------------------
@@ -63,7 +73,8 @@ def create_dynasty():
                 "last_name": request.form["last_name"],
                 "college": request.form["college"],
                 "alma_mater": request.form.get("alma_mater", ""),
-                "year": request.form["year"]
+                "year": request.form["year"],
+                "seasons": []
             }
         }
 
@@ -82,13 +93,6 @@ def edit_dynasty_page():
     dynasties = load_dynasties()
     return render_template("edit_dynasty.html", dynasties=dynasties)
 
-@app.route("/delete/<int:dynasty_id>", methods=["POST"])
-def delete_dynasty(dynasty_id):
-    dynasties = load_dynasties()
-    dynasties = [d for d in dynasties if d["id"] != dynasty_id]
-    save_dynasties(dynasties)
-    return redirect(url_for("edit_dynasty_page"))
-
 @app.route("/edit/<int:dynasty_id>", methods=["GET", "POST"])
 def edit_single_dynasty(dynasty_id):
     dynasties = load_dynasties()
@@ -103,6 +107,13 @@ def edit_single_dynasty(dynasty_id):
         return redirect(url_for("edit_dynasty_page"))
 
     return render_template("edit_single_dynasty.html", dynasty=dynasty)
+
+@app.route("/delete/<int:dynasty_id>", methods=["POST"])
+def delete_dynasty(dynasty_id):
+    dynasties = load_dynasties()
+    dynasties = [d for d in dynasties if d["id"] != dynasty_id]
+    save_dynasties(dynasties)
+    return redirect(url_for("edit_dynasty_page"))
 
 # -------------------------------
 # Edit Coach
@@ -125,9 +136,76 @@ def update_coach(dynasty_id):
                 "last_name": request.form["last_name"],
                 "college": request.form["college"],
                 "alma_mater": request.form.get("alma_mater", ""),
-                "year": request.form["year"]
+                "year": request.form["year"],
+                "seasons": d["coach"].get("seasons", [])
             }
             break
+    save_dynasties(dynasties)
+    return redirect(url_for("dynasty_page", dynasty_id=dynasty_id))
+
+# -------------------------------
+# Seasons (Add / Edit / Delete)
+# -------------------------------
+@app.route("/dynasty/<int:dynasty_id>/season/add", methods=["GET", "POST"])
+def add_season(dynasty_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+    if not dynasty:
+        return "<h1>Dynasty not found</h1>", 404
+
+    if request.method == "POST":
+        if "seasons" not in dynasty["coach"]:
+            dynasty["coach"]["seasons"] = []
+
+        new_id = max([s["id"] for s in dynasty["coach"]["seasons"]], default=0) + 1
+
+        season = {
+            "id": new_id,
+            "year": int(request.form["year"]),
+            "wins": int(request.form["wins"]),
+            "losses": int(request.form["losses"]),
+            "bowl_game": request.form.get("bowl_game", ""),
+            "trophies": [t.strip() for t in request.form.get("trophies", "").split(",") if t.strip()]
+        }
+
+        dynasty["coach"]["seasons"].append(season)
+        save_dynasties(dynasties)
+        return redirect(url_for("dynasty_page", dynasty_id=dynasty_id))
+
+    return render_template("add_season.html", dynasty=dynasty)
+
+
+@app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/edit", methods=["GET", "POST"])
+def edit_season(dynasty_id, season_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+    if not dynasty or "seasons" not in dynasty["coach"]:
+        return "<h1>Dynasty or seasons not found</h1>", 404
+
+    season = next((s for s in dynasty["coach"]["seasons"] if s["id"] == season_id), None)
+    if not season:
+        return "<h1>Season not found</h1>", 404
+
+    if request.method == "POST":
+        season["year"] = int(request.form["year"])
+        season["wins"] = int(request.form["wins"])
+        season["losses"] = int(request.form["losses"])
+        season["bowl_game"] = request.form.get("bowl_game", "")
+        season["trophies"] = [t.strip() for t in request.form.get("trophies", "").split(",") if t.strip()]
+        save_dynasties(dynasties)
+        return redirect(url_for("dynasty_page", dynasty_id=dynasty_id))
+
+    return render_template("edit_season.html", dynasty=dynasty, season=season)
+
+
+@app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/delete", methods=["POST"])
+def delete_season(dynasty_id, season_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+    if not dynasty or "seasons" not in dynasty["coach"]:
+        return "<h1>Dynasty or seasons not found</h1>", 404
+
+    dynasty["coach"]["seasons"] = [s for s in dynasty["coach"]["seasons"] if s["id"] != season_id]
     save_dynasties(dynasties)
     return redirect(url_for("dynasty_page", dynasty_id=dynasty_id))
 

@@ -47,14 +47,12 @@
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Edit Dynasty</h2>
-        <form action="{{ url_for('edit_single_dynasty', dynasty_id=dynasty.id) }}" method="POST">
-            <input type="text" name="name" value="{{ dynasty.name }}" required>
-            <input type="text" name="description" value="{{ dynasty.description }}" required>
-            <button type="submit">Update Dynasty</button>
-        </form>
-        <a href="{{ url_for('edit_dynasty_page') }}" class="back-link">Back to Edit List</a>
-    </div>
+    <h1>Edit Dynasty</h1>
+    <form action="{{ url_for('edit_single_dynasty', dynasty_id=dynasty.id) }}" method="POST">
+        <input type="text" name="name" value="{{ dynasty.name }}" required><br>
+        <input type="text" name="description" value="{{ dynasty.description }}" required><br>
+        <button type="submit">Update Dynasty</button>
+    </form>
+    <a href="{{ url_for('edit_dynasty_page') }}">Back to Edit List</a>
 </body>
 </html>

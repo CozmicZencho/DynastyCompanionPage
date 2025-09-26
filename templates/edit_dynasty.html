@@ -81,30 +81,22 @@
 </head>
 <body>
     <h1>Edit Dynasties</h1>
-
-    <div class="dynasty-box">
+    <div>
         {% for dynasty in dynasties %}
-            <div class="dynasty-item">
+            <div>
                 <span>{{ dynasty.name }}</span>
-                <div>
-                    <a href="{{ url_for('edit_single_dynasty', dynasty_id=dynasty.id) }}">
-                        <button type="button" class="edit-btn">Edit</button>
-                    </a>
-                    <form action="{{ url_for('delete_dynasty', dynasty_id=dynasty.id) }}" method="POST" style="display:inline;">
-                        <button type="submit" class="delete-btn">Delete</button>
-                    </form>
-                </div>
+                <a href="{{ url_for('edit_single_dynasty', dynasty_id=dynasty.id) }}">
+                    <button>Edit</button>
+                </a>
+                <form action="{{ url_for('delete_dynasty', dynasty_id=dynasty.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" style="background:red; color:white;">Delete</button>
+                </form>
             </div>
         {% endfor %}
-
         {% if not dynasties %}
-            <p style="text-align:center; padding: 10px;">No dynasties yet.</p>
+            <p>No dynasties yet.</p>
         {% endif %}
     </div>
-
-
-    <div class="back-link">
-        <a href="/home">Back to Menu</a>
-    </div>
+    <a href="/home">Back to Menu</a>
 </body>
 </html>

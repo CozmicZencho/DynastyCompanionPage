@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Season - {{ dynasty.name }}</title>
+</head>
+<body>
+    <h1>Add Season for {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</h1>
+    <form method="POST">
+        <input type="number" name="year" placeholder="Year" required><br>
+        <input type="number" name="wins" placeholder="Wins" required><br>
+        <input type="number" name="losses" placeholder="Losses" required><br>
+        <input type="text" name="bowl_game" placeholder="Bowl Game (optional)"><br>
+        <input type="text" name="trophies" placeholder="Trophies (comma-separated)"><br>
+        <button type="submit">Save Season</button>
+    </form>
+    <a href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">Back to Dynasty</a>
+</body>
+</html>

@@ -1,14 +1,58 @@
 [
     {
         "id": 1,
-        "name": "IRL Dynasty",
+        "name": "Aggie Dynasty",
         "description": "Texas A&M Football Save",
         "coach": {
-            "first_name": "Cozmic",
-            "last_name": "Avis",
-            "college": "Houston",
-            "alma_mater": "Texas A&M",
-            "year": "2025"
+            "first_name": "Jimbo",
+            "last_name": "Fisher",
+            "college": "Texas A&M",
+            "alma_mater": "Salem",
+            "year": "2025",
+            "seasons": [
+                {
+                    "id": 1,
+                    "year": 2025,
+                    "wins": 10,
+                    "losses": 2,
+                    "bowl_game": "Cotton Bowl",
+                    "trophies": [
+                        "Heisman Trophy \u00e2\u20ac\u201c QB John Doe"
+                    ]
+                },
+                {
+                    "id": 2,
+                    "year": 2026,
+                    "wins": 12,
+                    "losses": 1,
+                    "bowl_game": "Fiesta Bowl",
+                    "trophies": []
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Georgia Dynasty",
+        "description": "Georgia Bulldogs Save",
+        "coach": {
+            "first_name": "Kirby",
+            "last_name": "Smart",
+            "college": "Georgia",
+            "alma_mater": "Georgia",
+            "year": "2025",
+            "seasons": [
+                {
+                    "id": 1,
+                    "year": 2025,
+                    "wins": 13,
+                    "losses": 1,
+                    "bowl_game": "Peach Bowl",
+                    "trophies": [
+                        "SEC Championship Trophy"
+                    ]
+                }
+            ]
         }
     }
 ]
