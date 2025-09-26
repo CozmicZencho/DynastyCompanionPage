@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Coach - {{ dynasty.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 0 auto;
+            width: 400px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 95%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+
+        .back-link {
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Edit Coach</h2>
+        <form action="{{ url_for('update_coach', dynasty_id=dynasty.id) }}" method="POST">
+            <input type="text" name="first_name" value="{{ dynasty.coach.first_name }}" required>
+            <input type="text" name="last_name" value="{{ dynasty.coach.last_name }}" required>
+            <input type="text" name="college" value="{{ dynasty.coach.college }}" required>
+            <input type="text" name="alma_mater" value="{{ dynasty.coach.alma_mater }}">
+            <input type="number" name="year" value="{{ dynasty.coach.year }}" required>
+            <button type="submit">Update Coach</button>
+        </form>
+        <a href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}" class="back-link">Back to Dynasty</a>
+    </div>
+</body>
+</html>

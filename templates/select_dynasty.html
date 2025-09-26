@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Dynasty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .dynasty-box {
+            background-color: white;
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dynasty-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dynasty-item:last-child {
+            border-bottom: none;
+        }
+
+        .dynasty-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .dynasty-item a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+            display: block;
+            width: 100%;
+        }
+
+        .dynasty-item a:hover {
+            color: #0056b3;
+        }
+
+        .back-link {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Dynasty</h1>
+
+    <div class="dynasty-box">
+        {% for dynasty in dynasties %}
+            <div class="dynasty-item">
+                <a href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">
+                    {{ dynasty.name }}
+                </a>
+            </div>
+        {% endfor %}
+        {% if not dynasties %}
+            <p style="text-align:center; padding: 10px;">No dynasties available.</p>
+        {% endif %}
+    </div>
+
+    <div class="back-link">
+        <a href="/home">Back to Menu</a>
+    </div>
+</body>
+</html>

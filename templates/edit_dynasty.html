@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Dynasties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        .dynasty-box {
+            background-color: white;
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .dynasty-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s ease;
+        }
+
+        .dynasty-item:last-child {
+            border-bottom: none;
+        }
+
+        .dynasty-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .edit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+
+        .delete-btn:hover {
+            background: #a71d2a;
+        }
+
+        .back-link {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Dynasties</h1>
+
+    <div class="dynasty-box">
+        {% for dynasty in dynasties %}
+            <div class="dynasty-item">
+                <span>{{ dynasty.name }}</span>
+                <div>
+                    <a href="{{ url_for('edit_single_dynasty', dynasty_id=dynasty.id) }}">
+                        <button type="button" class="edit-btn">Edit</button>
+                    </a>
+                    <form action="{{ url_for('delete_dynasty', dynasty_id=dynasty.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if not dynasties %}
+            <p style="text-align:center; padding: 10px;">No dynasties yet.</p>
+        {% endif %}
+    </div>
+
+
+    <div class="back-link">
+        <a href="/home">Back to Menu</a>
+    </div>
+</body>
+</html>

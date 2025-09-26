@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Dynasty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        input[type="text"], input[type="number"] {
+            width: 95%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1e7e34;
+        }
+        .back-link {
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Create Dynasty</h2>
+        <form action="{{ url_for('create_dynasty') }}" method="POST">
+            <input type="text" name="name" placeholder="Dynasty Name" required>
+            <input type="text" name="description" placeholder="Description" required>
+
+            <h3>Coach Info</h3>
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="text" name="college" placeholder="College" required>
+            <input type="text" name="alma_mater" placeholder="Alma Mater (optional)">
+            <input type="number" name="year" placeholder="Year" required>
+
+            <button type="submit">Create Dynasty</button>
+        </form>
+        <a href="/home" class="back-link">Back to Menu</a>
+    </div>
+</body>
+</html>

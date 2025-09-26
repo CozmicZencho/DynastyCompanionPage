@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "IRL Dynasty",
+        "description": "Texas A&M Football Save",
+        "coach": {
+            "first_name": "Cozmic",
+            "last_name": "Avis",
+            "college": "Houston",
+            "alma_mater": "Texas A&M",
+            "year": "2025"
+        }
+    }
+]
