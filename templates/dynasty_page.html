@@ -8,37 +8,119 @@
     <h1>{{ dynasty.name }}</h1>
     <p>{{ dynasty.description }}</p>
 
-    <h2>Coach</h2>
-    <p><strong>{{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</strong></p>
-    <p>College: {{ dynasty.coach.college }}</p>
-    {% if dynasty.coach.alma_mater %}
-        <p>Alma Mater: {{ dynasty.coach.alma_mater }}</p>
-    {% endif %}
-    <p>Year: {{ dynasty.coach.year }}</p>
-    <a class="btn-link" href="{{ url_for('edit_coach_page', dynasty_id=dynasty.id) }}">Edit Coach</a>
-
-    <h2>Seasons</h2>
-    <div class="box">
-        {% if dynasty.coach.seasons %}
-            {% for season in dynasty.coach.seasons %}
-                <div class="item">
-                    <strong>{{ season.year }}</strong>: {{ season.wins }}–{{ season.losses }}
-                    {% if season.bowl_game %}| Bowl: {{ season.bowl_game }}{% endif %}
-                    {% if season.trophies %}| Trophies: {{ season.trophies | join(", ") }}{% endif %}
-
-                    <a class="btn-link" href="{{ url_for('edit_season', dynasty_id=dynasty.id, season_id=season.id) }}">Edit</a>
-                    <form action="{{ url_for('delete_season', dynasty_id=dynasty.id, season_id=season.id) }}" method="POST" style="display:inline;">
-                        <button class="delete-btn" type="submit">Delete</button>
-                    </form>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No seasons recorded yet.</p>
+    <!-- Coach Info -->
+    <div class="info-card">
+        <h2>Coach</h2>
+        <p><strong>Name:</strong> {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</p>
+        <p><strong>College:</strong> {{ dynasty.coach.college }}</p>
+        {% if dynasty.coach.alma_mater %}
+            <p><strong>Alma Mater:</strong> {{ dynasty.coach.alma_mater }}</p>
         {% endif %}
+        <p><strong>Year:</strong> {{ dynasty.coach.year }}</p>
+        <a class="btn-link" href="{{ url_for('edit_coach_page', dynasty_id=dynasty.id) }}">Edit Coach</a>
     </div>
-    <a class="btn-link" href="{{ url_for('add_season', dynasty_id=dynasty.id) }}">Add Season</a>
 
-    <br><br>
+    <!-- Seasons -->
+    <div class="info-card">
+        <h2>Seasons</h2>
+        <div class="table-container">
+            {% if dynasty.coach.seasons %}
+                <table class="seasons-table" id="seasonsTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Year</th>
+                            <th onclick="sortTable(1)">Wins</th>
+                            <th onclick="sortTable(2)">Losses</th>
+                            <th onclick="sortTable(3)">Bowl Game</th>
+                            <th onclick="sortTable(4)">Trophies</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for season in dynasty.coach.seasons %}
+                            <tr data-season-id="{{ season.id }}">
+                                <td>{{ season.year }}</td>
+                                <td>{{ season.wins }}</td>
+                                <td>{{ season.losses }}</td>
+                                <td>{{ season.bowl_game }}</td>
+                                <td>
+                                    {% if season.trophies %}
+                                        {{ season.trophies | join(", ") }}
+                                    {% else %}
+                                        —
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No seasons recorded yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Season Actions -->
+        <div class="season-actions">
+            <a class="btn-link" href="{{ url_for('add_season', dynasty_id=dynasty.id) }}">Add Season</a>
+            <button class="btn-link" id="editSeasonBtn">Edit Season</button>
+            <form id="deleteSeasonForm" action="" method="POST" style="display:inline;">
+                <button class="delete-btn" type="submit">Delete Season</button>
+            </form>
+        </div>
+    </div>
+
     <a class="back-link" href="/home">Back to Menu</a>
+
+    <!-- JS: Row Selection + Sorting -->
+    <script>
+    // Row selection
+    let selectedRow = null;
+    let selectedSeasonId = null;
+
+    document.querySelectorAll("#seasonsTable tbody tr").forEach(row => {
+        row.addEventListener("click", () => {
+            if (selectedRow) selectedRow.classList.remove("selected");
+            row.classList.add("selected");
+            selectedRow = row;
+            selectedSeasonId = row.getAttribute("data-season-id");
+        });
+    });
+
+    // Edit Season button
+    document.getElementById("editSeasonBtn").addEventListener("click", () => {
+        if (selectedSeasonId) {
+            window.location.href = `/dynasty/{{ dynasty.id }}/season/${selectedSeasonId}/edit`;
+        } else {
+            alert("Please select a season first.");
+        }
+    });
+
+    // Delete Season button
+    document.getElementById("deleteSeasonForm").addEventListener("submit", (e) => {
+        if (!selectedSeasonId) {
+            e.preventDefault();
+            alert("Please select a season first.");
+        } else {
+            e.target.action = `/dynasty/{{ dynasty.id }}/season/${selectedSeasonId}/delete`;
+        }
+    });
+
+    // Sortable table
+    function sortTable(colIndex) {
+        const table = document.getElementById("seasonsTable");
+        const rows = Array.from(table.rows).slice(1); // skip header
+        const asc = table.getAttribute("data-sort-dir") !== "asc";
+        
+        rows.sort((a, b) => {
+            const valA = a.cells[colIndex].innerText;
+            const valB = b.cells[colIndex].innerText;
+            return isNaN(valA) || isNaN(valB)
+                ? valA.localeCompare(valB) * (asc ? 1 : -1)
+                : (Number(valA) - Number(valB)) * (asc ? 1 : -1);
+        });
+
+        rows.forEach(row => table.tBodies[0].appendChild(row));
+        table.setAttribute("data-sort-dir", asc ? "asc" : "desc");
+    }
+    </script>
 </body>
 </html>
