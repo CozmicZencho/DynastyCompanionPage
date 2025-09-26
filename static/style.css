@@ -94,3 +94,49 @@ button:hover, .btn-link:hover {
 .back-link:hover {
     color: #000;
 }
+
+/* Form container */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 400px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* space between inputs */
+}
+
+/* Inputs & textareas */
+input, textarea, select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+/* On focus (click into box) */
+input:focus, textarea:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+/* Form headings */
+form h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Buttons inside forms */
+form button {
+    margin-top: 10px;
+    align-self: flex-end;
+}
