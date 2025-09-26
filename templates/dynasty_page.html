@@ -2,98 +2,43 @@
 <html>
 <head>
     <title>{{ dynasty.name }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        .section {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        input[type="text"], input[type="number"] {
-            width: 95%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .back-link {
-            margin-top: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>{{ dynasty.name }}</h1>
     <p>{{ dynasty.description }}</p>
 
-    <!-- Coach -->
     <h2>Coach</h2>
-    <p><strong>Name:</strong> {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</p>
-    <p><strong>College:</strong> {{ dynasty.coach.college }}</p>
+    <p><strong>{{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</strong></p>
+    <p>College: {{ dynasty.coach.college }}</p>
     {% if dynasty.coach.alma_mater %}
-        <p><strong>Alma Mater:</strong> {{ dynasty.coach.alma_mater }}</p>
+        <p>Alma Mater: {{ dynasty.coach.alma_mater }}</p>
     {% endif %}
-    <p><strong>Year:</strong> {{ dynasty.coach.year }}</p>
-    <a href="{{ url_for('edit_coach_page', dynasty_id=dynasty.id) }}">
-        <button>Edit Coach</button>
-    </a>
+    <p>Year: {{ dynasty.coach.year }}</p>
+    <a class="btn-link" href="{{ url_for('edit_coach_page', dynasty_id=dynasty.id) }}">Edit Coach</a>
 
-    <!-- Seasons -->
     <h2>Seasons</h2>
-    {% if dynasty.coach.seasons %}
-        <ul>
+    <div class="box">
+        {% if dynasty.coach.seasons %}
             {% for season in dynasty.coach.seasons %}
-                <li>
+                <div class="item">
                     <strong>{{ season.year }}</strong>: {{ season.wins }}–{{ season.losses }}
-                    {% if season.bowl_game %} | Bowl: {{ season.bowl_game }} {% endif %}
-                    {% if season.trophies %} | Trophies: {{ season.trophies | join(", ") }} {% endif %}
+                    {% if season.bowl_game %}| Bowl: {{ season.bowl_game }}{% endif %}
+                    {% if season.trophies %}| Trophies: {{ season.trophies | join(", ") }}{% endif %}
 
-                    <a href="{{ url_for('edit_season', dynasty_id=dynasty.id, season_id=season.id) }}">
-                        <button>Edit</button>
-                    </a>
-                    <form action="{{ url_for('delete_season', dynasty_id=dynasty.id, season_id=season.id) }}"
-                          method="POST" style="display:inline;">
-                        <button type="submit" style="background:red; color:white;">Delete</button>
+                    <a class="btn-link" href="{{ url_for('edit_season', dynasty_id=dynasty.id, season_id=season.id) }}">Edit</a>
+                    <form action="{{ url_for('delete_season', dynasty_id=dynasty.id, season_id=season.id) }}" method="POST" style="display:inline;">
+                        <button class="delete-btn" type="submit">Delete</button>
                     </form>
-                </li>
+                </div>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>No seasons recorded yet.</p>
-    {% endif %}
-
-    <a href="{{ url_for('add_season', dynasty_id=dynasty.id) }}">
-        <button>Add Season</button>
-    </a>
+        {% else %}
+            <p>No seasons recorded yet.</p>
+        {% endif %}
+    </div>
+    <a class="btn-link" href="{{ url_for('add_season', dynasty_id=dynasty.id) }}">Add Season</a>
 
     <br><br>
-    <a href="/home">Back to Menu</a>
+    <a class="back-link" href="/home">Back to Menu</a>
 </body>
 </html>

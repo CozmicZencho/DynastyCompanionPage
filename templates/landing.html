@@ -1,39 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Dynasty Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Dynasty Companion</h1>
-        <form action="/home">
-            <button type="submit">Continue</button>
-        </form>
-    </div>
+    <h1>Welcome to Dynasty Companion</h1>
+    <a class="btn-link" href="/home">Continue</a>
 </body>
 </html>

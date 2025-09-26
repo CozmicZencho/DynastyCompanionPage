@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Edit Season - {{ dynasty.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Edit Season ({{ season.year }}) for {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</h1>
@@ -13,6 +14,6 @@
         <input type="text" name="trophies" value="{{ season.trophies | join(', ') }}"><br>
         <button type="submit">Update Season</button>
     </form>
-    <a href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">Back to Dynasty</a>
+    <a class="back-link" href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">Back to Dynasty</a>
 </body>
 </html>

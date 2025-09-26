@@ -6,9 +6,9 @@
 </head>
 <body>
     <h1>Select a Dynasty</h1>
-    <div class="dynasty-box">
+    <div class="box">
         {% for dynasty in dynasties %}
-            <div class="dynasty-item">
+            <div class="item">
                 <a href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">{{ dynasty.name }}</a>
             </div>
         {% endfor %}

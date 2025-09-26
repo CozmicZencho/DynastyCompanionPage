@@ -79,7 +79,7 @@
     },
     {
         "id": 2,
-        "name": "Georgia Dynasty",
+        "name": "Georgia Example",
         "description": "Georgia Bulldogs Save",
         "coach": {
             "first_name": "Kirby",
