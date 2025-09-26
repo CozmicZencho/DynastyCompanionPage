@@ -1,31 +1,77 @@
 [
     {
         "id": 1,
-        "name": "Aggie Dynasty",
+        "name": "Texas Local",
         "description": "Texas A&M Football Save",
         "coach": {
-            "first_name": "Jimbo",
-            "last_name": "Fisher",
+            "first_name": "Cozmic",
+            "last_name": "Avis",
             "college": "Texas A&M",
-            "alma_mater": "Salem",
-            "year": "2025",
+            "alma_mater": "Texas A&M",
+            "year": "2034",
             "seasons": [
                 {
                     "id": 1,
                     "year": 2025,
-                    "wins": 10,
+                    "wins": 12,
                     "losses": 2,
-                    "bowl_game": "Cotton Bowl",
-                    "trophies": [
-                        "Heisman Trophy \u00e2\u20ac\u201c QB John Doe"
-                    ]
+                    "bowl_game": "",
+                    "trophies": []
                 },
                 {
                     "id": 2,
                     "year": 2026,
-                    "wins": 12,
+                    "wins": 9,
+                    "losses": 4,
+                    "bowl_game": "",
+                    "trophies": []
+                },
+                {
+                    "id": 3,
+                    "year": 2027,
+                    "wins": 16,
+                    "losses": 0,
+                    "bowl_game": "",
+                    "trophies": []
+                },
+                {
+                    "id": 4,
+                    "year": 2029,
+                    "wins": 15,
                     "losses": 1,
-                    "bowl_game": "Fiesta Bowl",
+                    "bowl_game": "",
+                    "trophies": []
+                },
+                {
+                    "id": 5,
+                    "year": 2030,
+                    "wins": 12,
+                    "losses": 2,
+                    "bowl_game": "",
+                    "trophies": []
+                },
+                {
+                    "id": 6,
+                    "year": 2031,
+                    "wins": 15,
+                    "losses": 1,
+                    "bowl_game": "",
+                    "trophies": []
+                },
+                {
+                    "id": 7,
+                    "year": 2032,
+                    "wins": 15,
+                    "losses": 1,
+                    "bowl_game": "",
+                    "trophies": []
+                },
+                {
+                    "id": 8,
+                    "year": 2033,
+                    "wins": 16,
+                    "losses": 0,
+                    "bowl_game": "",
                     "trophies": []
                 }
             ]
