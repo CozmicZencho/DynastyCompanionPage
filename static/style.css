@@ -10,32 +10,28 @@ body {
     justify-content: flex-start;
 
     /* Modern background */
-    background: linear-gradient(135deg, #0f1b31, #2a5298); /* blue gradient */
-    color: #fff; /* make text readable on dark bg */
+    background: linear-gradient(135deg, #2a5298, #0f1b31); /* blue gradient */
+    color: #fff; /* default text color on background */
 }
 
 h1, h2, h3 {
     margin-bottom: 15px;
-    color: #fff;
+    color: #070404; /* always dark for contrast inside boxes */
 }
 
-form, .info-card, .dynasty-box {
-    background-color: rgba(255, 255, 255, 0.9); 
-    color: #000; 
+/* Universal card/box style */
+form, .info-card, .dynasty-box, .chart-container, .table-box, .box {
+    background-color: #cfcfcf; 
+    color: #000000; 
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* Container for menus and lists */
 .box {
-    background-color: white;
     width: 400px;
     max-height: 300px;
     overflow-y: auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
@@ -71,7 +67,7 @@ button, .btn-link {
     padding: 10px 16px;
     margin: 5px;
     background-color: #0074D9;
-    color: white;
+    color: white !important;
     border: none;
     border-radius: 6px;
     font-size: 16px;
@@ -84,6 +80,14 @@ button, .btn-link {
 button:hover, .btn-link:hover {
     background-color: #005bb5;
     transform: scale(1.05);
+}
+
+.back-btn {
+    background-color: #6c757d; /* Bootstrap-like gray */
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
 }
 
 /* Delete buttons */
@@ -100,24 +104,20 @@ button:hover, .btn-link:hover {
     margin-top: 15px;
     text-decoration: none;
     font-weight: bold;
-    color: #333;
+    color: #555555;
 }
 
 .back-link:hover {
-    color: #000;
+    color: #4d0000;
 }
 
 /* Form container */
 form {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     width: 400px;
     margin: 0 auto 20px auto;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* space between inputs */
+    gap: 12px;
 }
 
 /* Inputs & textareas */
@@ -129,6 +129,13 @@ input, textarea, select {
     width: 100%;
     box-sizing: border-box;
     transition: border 0.2s, box-shadow 0.2s;
+    background: #fff;
+    color: #000;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #888;
 }
 
 /* On focus (click into box) */
@@ -155,7 +162,7 @@ form button {
 
 /* Seasons table container */
 .table-container {
-    max-height: 300px;  /* makes it scroll if there are too many seasons */
+    max-height: 300px;
     overflow-y: auto;
     margin: 20px auto;
     width: 90%;
@@ -170,6 +177,7 @@ form button {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    color: #000; /* readable text */
 }
 
 .seasons-table th, .seasons-table td {
@@ -191,18 +199,6 @@ form button {
 .seasons-actions {
     display: flex;
     gap: 5px;
-}
-
-/* Card-style info box */
-.info-card {
-    background: white;
-    width: 90%;
-    max-width: 600px;
-    padding: 20px;
-    margin: 15px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: left;
 }
 
 /* Highlight selectable table rows */

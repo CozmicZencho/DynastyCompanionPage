@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ dynasty.name }} - Charts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            margin-top: 30px;
+            text-align: center;
+        }
+        canvas {
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">{{ dynasty.name }} - Charts Dashboard</h1>
+
+    <!-- Line Chart -->
+    <div class="chart-container">
+        <h2>Wins & Losses Over Time</h2>
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-container">
+        <h2>Achievements per Year</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="chart-container">
+        <h2>Achievements Breakdown</h2>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- Scatter Plot -->
+    <div class="chart-container">
+        <h2>Wins vs Achievements</h2>
+        <canvas id="scatterChart"></canvas>
+    </div>
+
+    <!-- Timeline -->
+    <div class="chart-container">
+        <h2>Season Timeline of Achievements</h2>
+        <canvas id="timelineChart"></canvas>
+    </div>
+
+    <div style="text-align:center; margin: 30px;">
+        <a class="btn-link" href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">⬅ Go Back to Dynasty</a>
+    </div>
+
+    <script>
+        // Line Chart (Wins & Losses)
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: {{ years|tojson }},
+                datasets: [
+                    { label: 'Wins', data: {{ wins|tojson }}, borderColor: 'green', fill: false },
+                    { label: 'Losses', data: {{ losses|tojson }}, borderColor: 'red', fill: false }
+                ]
+            }
+        });
+
+        // Bar Chart (Achievements per Year)
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: {{ years|tojson }},
+                datasets: [
+                    { label: 'Achievements', data: {{ achievements|tojson }}, backgroundColor: 'blue' }
+                ]
+            }
+        });
+
+        // Pie Chart (Achievements Breakdown by Type)
+        new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys({{ type_counts|tojson }}),
+                datasets: [{
+                    data: Object.values({{ type_counts|tojson }}),
+                    backgroundColor: ['#4caf50', '#ff9800', '#2196f3']
+                }]
+            }
+        });
+
+        // Scatter Plot (Wins vs Achievements)
+        new Chart(document.getElementById('scatterChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Wins vs Achievements',
+                    data: {{ scatter_data|tojson }},
+                    backgroundColor: 'purple'
+                }]
+            },
+            options: {
+                scales: {
+                    x: { title: { display: true, text: 'Wins' } },
+                    y: { title: { display: true, text: 'Achievements' } }
+                }
+            }
+        });
+
+        // Timeline Chart (currently as a bar chart placeholder)
+        new Chart(document.getElementById('timelineChart'), {
+            type: 'bar',
+            data: {
+                labels: {{ years|tojson }},
+                datasets: [
+                    { label: 'Achievements', data: {{ achievements|tojson }}, backgroundColor: 'teal' }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

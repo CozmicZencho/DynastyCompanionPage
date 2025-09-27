@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "name": "Texas Local",
-        "description": "Texas A&M Football Save",
+        "name": "Lone Star Local",
+        "description": "Lone Star Save",
         "coach": {
             "first_name": "Cozmic",
             "last_name": "Avis",

@@ -293,6 +293,50 @@ def edit_awards(dynasty_id, season_id):
 
     return render_template("edit_awards.html", dynasty=dynasty, season=season)
 
+# -------------------------------
+# View Charts
+# -------------------------------
+@app.route("/dynasty/<int:dynasty_id>/charts")
+def dynasty_charts(dynasty_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+    if not dynasty:
+        return "Dynasty not found", 404
+
+    seasons = dynasty["coach"].get("seasons", [])
+
+    years = [s.get("year", 0) for s in seasons]
+    wins = [s.get("wins", 0) for s in seasons]
+    losses = [s.get("losses", 0) for s in seasons]
+    achievements = [len(s.get("achievements", [])) for s in seasons]
+
+    # Ensure type counts always exist
+    type_counts = {"Team": 0, "Coach": 0, "Player": 0}
+    for s in seasons:
+        for a in s.get("achievements", []):
+            award_type = a.get("type")
+            if award_type in type_counts:
+                type_counts[award_type] += 1
+            else:
+                type_counts[award_type] = 1  # catch any odd cases
+
+    # Scatter chart data (wins vs achievements)
+    scatter_data = [
+        {"x": s.get("wins", 0), "y": len(s.get("achievements", []))}
+        for s in seasons
+    ]
+
+    return render_template(
+        "dynasty_charts.html",
+        dynasty=dynasty,
+        years=years or [],
+        wins=wins or [],
+        losses=losses or [],
+        achievements=achievements or [],
+        type_counts=type_counts or {"Team": 0, "Coach": 0, "Player": 0},
+        scatter_data=scatter_data or []
+    )
+
 
 # -------------------------------
 # Run the app
