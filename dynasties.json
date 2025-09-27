@@ -15,7 +15,16 @@
                     "year": 2025,
                     "wins": 12,
                     "losses": 2,
-                    "achievements": [],
+                    "achievements": [
+                        {
+                            "type": "Team",
+                            "award": "First Responder Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "AAC Championship"
+                        }
+                    ],
                     "bowl_game": "",
                     "trophies": [],
                     "team": "North Texas"
@@ -38,6 +47,10 @@
                             "type": "Player",
                             "award": "Doak Walker",
                             "player": "Re'Shaun Sanford II"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Poptart Bowl"
                         }
                     ],
                     "team": "Houston"
@@ -71,6 +84,18 @@
                             "type": "Player",
                             "award": "Fred Biletnikoff",
                             "player": "Tyler Babineaux"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Sugar Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Cotton Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Big 12 Championship"
                         }
                     ],
                     "team": "Houston"
@@ -85,6 +110,14 @@
                             "type": "Player",
                             "award": "Doak Walker",
                             "player": "Asahiah Pyke"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Sugar Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Big 12 Championship"
                         }
                     ],
                     "team": "Houston"
@@ -104,6 +137,18 @@
                             "type": "Player",
                             "award": "Rimington",
                             "player": "Felix Shipp"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Peach Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Sugar Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Big 12 Championship"
                         }
                     ],
                     "team": "Houston"
@@ -137,6 +182,14 @@
                         {
                             "type": "Team",
                             "award": "National Championship"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Rose Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Fiesta Bowl"
                         }
                     ],
                     "team": "Houston"
@@ -184,6 +237,18 @@
                         {
                             "type": "Team",
                             "award": "National Championship"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Orange Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Sugar Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Big 12 Championship"
                         }
                     ],
                     "team": "Houston"
@@ -203,6 +268,14 @@
                             "type": "Player",
                             "award": "John Mackey",
                             "player": "David Haslam"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Fiesta Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Orange Bowl"
                         }
                     ]
                 },
@@ -246,6 +319,18 @@
                         {
                             "type": "Team",
                             "award": "National Championship"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Peach Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Sugar Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "Big 12 Championship"
                         }
                     ]
                 }

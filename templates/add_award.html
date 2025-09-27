@@ -45,34 +45,109 @@
         <label for="award">Award:</label>
         <select name="award" id="award" required>
             <!-- Team Awards -->
-            <option value="National Championship" data-group="Team">National Championship</option>
-            <option value="Conference Championship" data-group="Team">Conference Championship</option>
+            <optgroup label="Championships">
+                <option value="National Championship" data-group="Team">National Championship</option>
+                <option value="Generic Conference Championship" data-group="Team">Generic Conference Championship</option>
+                <option value="SEC Championship" data-group="Team">SEC Championship</option>
+                <option value="Big Ten Championship" data-group="Team">Big Ten Championship</option>
+                <option value="ACC Championship" data-group="Team">ACC Championship</option>
+                <option value="Big 12 Championship" data-group="Team">Big 12 Championship</option>
+                <option value="Pac-12 Championship" data-group="Team">Pac-12 Championship</option>
+                <option value="AAC Championship" data-group="Team">AAC Championship</option>
+                <option value="Mountain West Championship" data-group="Team">Mountain West Championship</option>
+                <option value="Conference USA Championship" data-group="Team">Conference USA Championship</option>
+                <option value="MAC Championship" data-group="Team">MAC Championship</option>
+                <option value="Sun Belt Championship" data-group="Team">Sun Belt Championship</option>
+            </optgroup>
+
+            <optgroup label="New Year's Six Bowls">
+                <option value="Rose Bowl" data-group="Team">Rose Bowl</option>
+                <option value="Sugar Bowl" data-group="Team">Sugar Bowl</option>
+                <option value="Orange Bowl" data-group="Team">Orange Bowl</option>
+                <option value="Cotton Bowl" data-group="Team">Cotton Bowl</option>
+                <option value="Peach Bowl" data-group="Team">Peach Bowl</option>
+                <option value="Fiesta Bowl" data-group="Team">Fiesta Bowl</option>
+            </optgroup>
+
+            <optgroup label="Other Major Bowls">
+                <option value="Citrus Bowl" data-group="Team">Citrus Bowl</option>
+                <option value="Outback Bowl" data-group="Team">Outback Bowl</option>
+                <option value="Gator Bowl" data-group="Team">Gator Bowl</option>
+                <option value="Holiday Bowl" data-group="Team">Holiday Bowl</option>
+                <option value="Sun Bowl" data-group="Team">Sun Bowl</option>
+                <option value="Alamo Bowl" data-group="Team">Alamo Bowl</option>
+                <option value="Liberty Bowl" data-group="Team">Liberty Bowl</option>
+                <option value="Music City Bowl" data-group="Team">Music City Bowl</option>
+                <option value="Texas Bowl" data-group="Team">Texas Bowl</option>
+                <option value="Cheez-It Bowl" data-group="Team">Cheez-It Bowl</option>
+                <option value="Duke’s Mayo Bowl" data-group="Team">Duke’s Mayo Bowl</option>
+                <option value="Las Vegas Bowl" data-group="Team">Las Vegas Bowl</option>
+                <option value="Pinstripe Bowl" data-group="Team">Pinstripe Bowl</option>
+                <option value="Fenway Bowl" data-group="Team">Fenway Bowl</option>
+            </optgroup>
+
+            <optgroup label="Group of 5 / Other Bowls">
+                <option value="Gasparilla Bowl" data-group="Team">Gasparilla Bowl</option>
+                <option value="First Responder Bowl" data-group="Team">First Responder Bowl</option>
+                <option value="Hawaii Bowl" data-group="Team">Hawaii Bowl</option>
+                <option value="Frisco Bowl" data-group="Team">Frisco Bowl</option>
+                <option value="Boca Raton Bowl" data-group="Team">Boca Raton Bowl</option>
+                <option value="Camellia Bowl" data-group="Team">Camellia Bowl</option>
+                <option value="New Mexico Bowl" data-group="Team">New Mexico Bowl</option>
+                <option value="Myrtle Beach Bowl" data-group="Team">Myrtle Beach Bowl</option>
+                <option value="Cure Bowl" data-group="Team">Cure Bowl</option>
+                <option value="Bahamas Bowl" data-group="Team">Bahamas Bowl</option>
+                <option value="Idaho Potato Bowl" data-group="Team">Famous Idaho Potato Bowl</option>
+                <option value="New Orleans Bowl" data-group="Team">New Orleans Bowl</option>
+                <option value="Arizona Bowl" data-group="Team">Arizona Bowl</option>
+                <option value="Quick Lane Bowl" data-group="Team">Quick Lane Bowl</option>
+                <option value="Independence Bowl" data-group="Team">Independence Bowl</option>
+                <option value="Military Bowl" data-group="Team">Military Bowl</option>
+                <option value="LendingTree Bowl" data-group="Team">LendingTree Bowl</option>
+                <option value="R+L Carriers Bowl" data-group="Team">R+L Carriers Bowl</option>
+                <option value="Heart of Dallas Bowl" data-group="Team">Heart of Dallas Bowl</option>
+                <option value="Poptart Bowl" data-group="Team">Poptart Bowl</option>
+            </optgroup>
 
             <!-- Coach Awards -->
             <option value="Bear Bryant" data-group="Coach">Bear Bryant</option>
             <option value="Broyles" data-group="Coach">Broyles</option>
 
-            <!-- Player Awards -->
-            <option value="Heisman" data-group="Player">Heisman</option>
-            <option value="Unitas Golden Arm" data-group="Player">Unitas Golden Arm</option>
-            <option value="Davey O'Brien" data-group="Player">Davey O'Brien</option>
-            <option value="Edge Rusher OTY" data-group="Player">Edge Rusher OTY</option>
-            <option value="Fred Biletnikoff" data-group="Player">Fred Biletnikoff</option>
-            <option value="Chuck Bednarik" data-group="Player">Chuck Bednarik</option>
-            <option value="Bronko Nagurski" data-group="Player">Bronko Nagurski</option>
-            <option value="Doak Walker" data-group="Player">Doak Walker</option>
-            <option value="John Mackey" data-group="Player">John Mackey</option>
-            <option value="Lombardi" data-group="Player">Lombardi</option>
-            <option value="Lou Groza" data-group="Player">Lou Groza</option>
-            <option value="Maxwell" data-group="Player">Maxwell</option>
-            <option value="Walter Camp" data-group="Player">Walter Camp</option>
-            <option value="Outland" data-group="Player">Outland</option>
-            <option value="Jim Thorpe" data-group="Player">Jim Thorpe</option>
-            <option value="Ray Guy" data-group="Player">Ray Guy</option>
-            <option value="Rimington" data-group="Player">Rimington</option>
-            <option value="JET Award" data-group="Player">JET Award</option>
-            <option value="Dick Butkus" data-group="Player">Dick Butkus</option>
-            <option value="Shaun Alexander" data-group="Player">Shaun Alexander</option>
+                        <!-- Player Awards -->
+            <optgroup label="Quarterback Awards">
+                <option value="Heisman" data-group="Player">Heisman</option>
+                <option value="Unitas Golden Arm" data-group="Player">Unitas Golden Arm</option>
+                <option value="Davey O'Brien" data-group="Player">Davey O'Brien</option>
+                <option value="Maxwell" data-group="Player">Maxwell</option>
+                <option value="Walter Camp" data-group="Player">Walter Camp</option>
+            </optgroup>
+
+            <optgroup label="Running Back Awards">
+                <option value="Doak Walker" data-group="Player">Doak Walker</option>
+                <option value="Shaun Alexander" data-group="Player">Shaun Alexander</option>
+                <option value="JET Award" data-group="Player">JET Award</option>
+            </optgroup>
+
+            <optgroup label="Receiver / Tight End Awards">
+                <option value="Fred Biletnikoff" data-group="Player">Fred Biletnikoff</option>
+                <option value="John Mackey" data-group="Player">John Mackey</option>
+            </optgroup>
+
+            <optgroup label="Offensive Line Awards">
+                <option value="Outland" data-group="Player">Outland</option>
+                <option value="Lombardi" data-group="Player">Lombardi</option>
+                <option value="Rimington" data-group="Player">Rimington</option>
+                <option value="Lou Groza" data-group="Player">Lou Groza</option>
+            </optgroup>
+
+            <optgroup label="Defensive Awards">
+                <option value="Chuck Bednarik" data-group="Player">Chuck Bednarik</option>
+                <option value="Bronko Nagurski" data-group="Player">Bronko Nagurski</option>
+                <option value="Dick Butkus" data-group="Player">Dick Butkus</option>
+                <option value="Jim Thorpe" data-group="Player">Jim Thorpe</option>
+                <option value="Ray Guy" data-group="Player">Ray Guy</option>
+                <option value="Edge Rusher OTY" data-group="Player">Edge Rusher OTY</option>
+            </optgroup>
         </select>
 
         <label for="player">Player Name (only if Player Award):</label>

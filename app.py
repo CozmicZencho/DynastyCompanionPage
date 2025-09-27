@@ -244,11 +244,15 @@ def add_award(dynasty_id, season_id):
     if request.method == "POST":
         award_type = request.form["type"]
         award_name = request.form["award"]
-        player_name = request.form.get("player", "")
+        player_name = request.form.get("player", "").strip()
+        coach_name = request.form.get("coach", "").strip()
 
         new_award = {"type": award_type, "award": award_name}
+
         if award_type == "Player" and player_name:
             new_award["player"] = player_name
+        elif award_type == "Coach" and coach_name:
+            new_award["coach"] = coach_name
 
         season.setdefault("achievements", []).append(new_award)
         save_dynasties(dynasties)
@@ -256,6 +260,7 @@ def add_award(dynasty_id, season_id):
         return redirect(url_for("season_achievements", dynasty_id=dynasty_id, season_id=season_id))
 
     return render_template("add_award.html", dynasty=dynasty, season=season)
+
 
 
 @app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/edit_awards", methods=["GET", "POST"])
