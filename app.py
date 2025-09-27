@@ -162,10 +162,10 @@ def add_season(dynasty_id):
         season = {
             "id": new_id,
             "year": int(request.form["year"]),
+            "team": request.form["team"],   # ✅ new field
             "wins": int(request.form["wins"]),
             "losses": int(request.form["losses"]),
-            "bowl_game": request.form.get("bowl_game", ""),
-            "trophies": [t.strip() for t in request.form.get("trophies", "").split(",") if t.strip()]
+            "achievements": []              # ✅ replaces bowl_game + trophies
         }
 
         dynasty["coach"]["seasons"].append(season)
