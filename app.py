@@ -162,10 +162,10 @@ def add_season(dynasty_id):
         season = {
             "id": new_id,
             "year": int(request.form["year"]),
-            "team": request.form["team"],   # ✅ new field
+            "team": request.form["team"],   
             "wins": int(request.form["wins"]),
             "losses": int(request.form["losses"]),
-            "achievements": []              # ✅ replaces bowl_game + trophies
+            "achievements": []             
         }
 
         dynasty["coach"]["seasons"].append(season)
@@ -213,7 +213,6 @@ def delete_season(dynasty_id, season_id):
 # -------------------------------
 # View Achievements
 # -------------------------------
-
 @app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/achievements")
 def season_achievements(dynasty_id, season_id):
     dynasties = load_dynasties()
@@ -226,19 +225,8 @@ def season_achievements(dynasty_id, season_id):
     if not season:
         return "Season not found", 404
 
-    # 🔄 Temporary compatibility:
-    # Convert bowl_game + trophies → unified achievements list
-    achievements = []
-
-    if season.get("bowl_game"):
-        achievements.append({"type": "Team", "award": season["bowl_game"]})
-
-    if season.get("trophies"):
-        for t in season["trophies"]:
-            achievements.append({"type": "Team", "award": t})
-
-    # Attach to season for rendering
-    season["achievements"] = achievements
+    if "achievements" not in season:
+        season["achievements"] = []
 
     return render_template("season_achievements.html", dynasty=dynasty, season=season)
 
@@ -282,7 +270,6 @@ def edit_awards(dynasty_id, season_id):
         return "Season not found", 404
 
     if request.method == "POST":
-        # Replace achievements with new submitted list
         new_achievements = []
         awards = request.form.getlist("award")
         types = request.form.getlist("type")

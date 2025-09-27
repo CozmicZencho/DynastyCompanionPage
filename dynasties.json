@@ -15,49 +15,64 @@
                     "year": 2025,
                     "wins": 12,
                     "losses": 2,
-                    "achievements": []
+                    "achievements": [],
+                    "bowl_game": "",
+                    "trophies": [],
+                    "team": "North Texas"
                 },
                 {
                     "id": 2,
                     "year": 2026,
                     "wins": 9,
                     "losses": 4,
-                    "achievements": []
+                    "achievements": [],
+                    "team": "Houston"
                 },
                 {
                     "id": 3,
                     "year": 2027,
-                    "wins": 16,
-                    "losses": 0,
-                    "achievements": []
+                    "wins": 10,
+                    "losses": 4,
+                    "achievements": [
+                        {
+                            "type": "Player",
+                            "award": "Doak Walker",
+                            "player": "Re'Shaun Sanford II"
+                        }
+                    ],
+                    "team": "Houston"
                 },
                 {
                     "id": 4,
                     "year": 2029,
                     "wins": 15,
                     "losses": 1,
-                    "achievements": []
+                    "achievements": [],
+                    "team": "Houston"
                 },
                 {
                     "id": 5,
                     "year": 2030,
                     "wins": 12,
                     "losses": 2,
-                    "achievements": []
+                    "achievements": [],
+                    "team": "Houston"
                 },
                 {
                     "id": 6,
                     "year": 2031,
                     "wins": 15,
                     "losses": 1,
-                    "achievements": []
+                    "achievements": [],
+                    "team": "Houston"
                 },
                 {
                     "id": 7,
                     "year": 2032,
                     "wins": 15,
                     "losses": 1,
-                    "achievements": []
+                    "achievements": [],
+                    "team": "Houston"
                 },
                 {
                     "id": 8,
@@ -68,6 +83,29 @@
                         {
                             "type": "Team",
                             "award": "National Championship"
+                        }
+                    ],
+                    "team": "Houston"
+                },
+                {
+                    "id": 9,
+                    "year": 2034,
+                    "team": "Texas A&M",
+                    "wins": 16,
+                    "losses": 1,
+                    "achievements": []
+                },
+                {
+                    "id": 10,
+                    "year": 2028,
+                    "team": "Houston",
+                    "wins": 16,
+                    "losses": 0,
+                    "achievements": [
+                        {
+                            "type": "Player",
+                            "award": "Doak Walker",
+                            "player": "Asahiah Pyke"
                         }
                     ]
                 }
