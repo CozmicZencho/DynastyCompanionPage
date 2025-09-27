@@ -3,59 +3,88 @@
 <head>
     <title>Add Award - {{ season.year }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function filterAwards() {
+            const type = document.getElementById("type").value;
+            const awardSelect = document.getElementById("award");
+
+            // Hide all options first
+            for (let opt of awardSelect.options) {
+                if (opt.dataset.group) {
+                    opt.style.display = "none";
+                }
+            }
+
+            // Show only the ones in the selected type
+            for (let opt of awardSelect.options) {
+                if (opt.dataset.group === type) {
+                    opt.style.display = "block";
+                }
+            }
+
+            // Reset to first visible option
+            for (let opt of awardSelect.options) {
+                if (opt.style.display === "block") {
+                    awardSelect.value = opt.value;
+                    break;
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Add Award to {{ dynasty.name }} - {{ season.year }}</h1>
     <form action="{{ url_for('add_award', dynasty_id=dynasty.id, season_id=season.id) }}" method="POST">
         <label for="type">Award Type:</label>
-        <select name="type" required>
+        <select name="type" id="type" onchange="filterAwards()" required>
             <option value="Team">Team Award</option>
             <option value="Coach">Coach Award</option>
             <option value="Player">Player Award</option>
         </select>
 
         <label for="award">Award:</label>
-        <select name="award" required>
-            <optgroup label="Team Awards">
-                <option>National Championship</option>
-                <option>Conference Championship</option>
-            </optgroup>
+        <select name="award" id="award" required>
+            <!-- Team Awards -->
+            <option value="National Championship" data-group="Team">National Championship</option>
+            <option value="Conference Championship" data-group="Team">Conference Championship</option>
 
-            <optgroup label="Coach Awards">
-                <option>Bear Bryant</option>
-                <option>Broyles</option>
-            </optgroup>
+            <!-- Coach Awards -->
+            <option value="Bear Bryant" data-group="Coach">Bear Bryant</option>
+            <option value="Broyles" data-group="Coach">Broyles</option>
 
-            <optgroup label="Player Awards">
-                <option>Heisman</option>
-                <option>Unitas Golden Arm</option>
-                <option>Davey O'Brien</option>
-                <option>Edge Rusher OTY</option>
-                <option>Fred Biletnikoff</option>
-                <option>Chuck Bednarik</option>
-                <option>Bronko Nagurski</option>
-                <option>Doak Walker</option>
-                <option>John Mackey</option>
-                <option>Lombardi</option>
-                <option>Lou Groza</option>
-                <option>Maxwell</option>
-                <option>Walter Camp</option>
-                <option>Outland</option>
-                <option>Jim Thorpe</option>
-                <option>Ray Guy</option>
-                <option>Rimington</option>
-                <option>JET Award</option>
-                <option>Dick Butkus</option>
-                <option>Shaun Alexander</option>
-            </optgroup>
+            <!-- Player Awards -->
+            <option value="Heisman" data-group="Player">Heisman</option>
+            <option value="Unitas Golden Arm" data-group="Player">Unitas Golden Arm</option>
+            <option value="Davey O'Brien" data-group="Player">Davey O'Brien</option>
+            <option value="Edge Rusher OTY" data-group="Player">Edge Rusher OTY</option>
+            <option value="Fred Biletnikoff" data-group="Player">Fred Biletnikoff</option>
+            <option value="Chuck Bednarik" data-group="Player">Chuck Bednarik</option>
+            <option value="Bronko Nagurski" data-group="Player">Bronko Nagurski</option>
+            <option value="Doak Walker" data-group="Player">Doak Walker</option>
+            <option value="John Mackey" data-group="Player">John Mackey</option>
+            <option value="Lombardi" data-group="Player">Lombardi</option>
+            <option value="Lou Groza" data-group="Player">Lou Groza</option>
+            <option value="Maxwell" data-group="Player">Maxwell</option>
+            <option value="Walter Camp" data-group="Player">Walter Camp</option>
+            <option value="Outland" data-group="Player">Outland</option>
+            <option value="Jim Thorpe" data-group="Player">Jim Thorpe</option>
+            <option value="Ray Guy" data-group="Player">Ray Guy</option>
+            <option value="Rimington" data-group="Player">Rimington</option>
+            <option value="JET Award" data-group="Player">JET Award</option>
+            <option value="Dick Butkus" data-group="Player">Dick Butkus</option>
+            <option value="Shaun Alexander" data-group="Player">Shaun Alexander</option>
         </select>
 
         <label for="player">Player Name (only if Player Award):</label>
-        <input type="text" name="player">
+        <input type="text" name="player" placeholder="Enter player name (if Player award)">
 
         <button type="submit">Add Award</button>
     </form>
 
     <a class="back-link" href="{{ url_for('season_achievements', dynasty_id=dynasty.id, season_id=season.id) }}">Cancel</a>
+
+    <script>
+        filterAwards();
+    </script>
 </body>
 </html>

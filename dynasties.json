@@ -47,7 +47,32 @@
                     "year": 2029,
                     "wins": 15,
                     "losses": 1,
-                    "achievements": [],
+                    "achievements": [
+                        {
+                            "type": "Coach",
+                            "award": "Broyles"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Maxwell",
+                            "player": "Tyler Babineaux"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Walter Camp",
+                            "player": "Tyler Babineaux"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Heisman",
+                            "player": "Tyler Babineaux"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Fred Biletnikoff",
+                            "player": "Tyler Babineaux"
+                        }
+                    ],
                     "team": "Houston"
                 },
                 {
@@ -55,7 +80,13 @@
                     "year": 2030,
                     "wins": 12,
                     "losses": 2,
-                    "achievements": [],
+                    "achievements": [
+                        {
+                            "type": "Player",
+                            "award": "Doak Walker",
+                            "player": "Asahiah Pyke"
+                        }
+                    ],
                     "team": "Houston"
                 },
                 {
@@ -63,7 +94,18 @@
                     "year": 2031,
                     "wins": 15,
                     "losses": 1,
-                    "achievements": [],
+                    "achievements": [
+                        {
+                            "type": "Player",
+                            "award": "Doak Walker",
+                            "player": "Jabari Gwacham"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Rimington",
+                            "player": "Felix Shipp"
+                        }
+                    ],
                     "team": "Houston"
                 },
                 {
@@ -71,7 +113,32 @@
                     "year": 2032,
                     "wins": 15,
                     "losses": 1,
-                    "achievements": [],
+                    "achievements": [
+                        {
+                            "type": "Player",
+                            "award": "Walter Camp",
+                            "player": "Jalen Qualls"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Heisman",
+                            "player": "Jalen Qualls"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Doak Walker",
+                            "player": "Jalen Qualls"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Maxwell",
+                            "player": "Jalen Qualls"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "National Championship"
+                        }
+                    ],
                     "team": "Houston"
                 },
                 {
@@ -80,6 +147,40 @@
                     "wins": 16,
                     "losses": 0,
                     "achievements": [
+                        {
+                            "type": "Team",
+                            "award": "National Championship"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "John Mackey",
+                            "player": "Cris Silverman"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Walter Camp",
+                            "player": "Darrelle Eaton"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Doak Walker",
+                            "player": "Darrelle Eaton"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Davey O'Brien",
+                            "player": "Larry Cloud"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Maxwell",
+                            "player": "Darrelle Eaton"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Heisman",
+                            "player": "Darrelle Eaton"
+                        },
                         {
                             "type": "Team",
                             "award": "National Championship"
@@ -93,7 +194,17 @@
                     "team": "Texas A&M",
                     "wins": 16,
                     "losses": 1,
-                    "achievements": []
+                    "achievements": [
+                        {
+                            "type": "Team",
+                            "award": "National Championship"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "John Mackey",
+                            "player": "David Haslam"
+                        }
+                    ]
                 },
                 {
                     "id": 10,
@@ -106,6 +217,35 @@
                             "type": "Player",
                             "award": "Doak Walker",
                             "player": "Asahiah Pyke"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Davey O'Brien",
+                            "player": "Kona Ochi"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "John Mackey",
+                            "player": "Linkon Cure"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Heisman",
+                            "player": "Asahiah Pyke"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Maxwell",
+                            "player": "Asahiah Pyke"
+                        },
+                        {
+                            "type": "Player",
+                            "award": "Walter Camp",
+                            "player": "Asahiah Pyke"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "National Championship"
                         }
                     ]
                 }
