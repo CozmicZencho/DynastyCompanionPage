@@ -210,6 +210,98 @@ def delete_season(dynasty_id, season_id):
     return redirect(url_for("dynasty_page", dynasty_id=dynasty_id))
 
 # -------------------------------
+# View Achievements
+# -------------------------------
+
+@app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/achievements")
+def season_achievements(dynasty_id, season_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+
+    if not dynasty:
+        return "Dynasty not found", 404
+
+    season = next((s for s in dynasty["coach"]["seasons"] if s["id"] == season_id), None)
+    if not season:
+        return "Season not found", 404
+
+    # 🔄 Temporary compatibility:
+    # Convert bowl_game + trophies → unified achievements list
+    achievements = []
+
+    if season.get("bowl_game"):
+        achievements.append({"type": "Team", "award": season["bowl_game"]})
+
+    if season.get("trophies"):
+        for t in season["trophies"]:
+            achievements.append({"type": "Team", "award": t})
+
+    # Attach to season for rendering
+    season["achievements"] = achievements
+
+    return render_template("season_achievements.html", dynasty=dynasty, season=season)
+
+@app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/add_award", methods=["GET", "POST"])
+def add_award(dynasty_id, season_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+    if not dynasty:
+        return "Dynasty not found", 404
+
+    season = next((s for s in dynasty["coach"]["seasons"] if s["id"] == season_id), None)
+    if not season:
+        return "Season not found", 404
+
+    if request.method == "POST":
+        award_type = request.form["type"]
+        award_name = request.form["award"]
+        player_name = request.form.get("player", "")
+
+        new_award = {"type": award_type, "award": award_name}
+        if award_type == "Player" and player_name:
+            new_award["player"] = player_name
+
+        season.setdefault("achievements", []).append(new_award)
+        save_dynasties(dynasties)
+
+        return redirect(url_for("season_achievements", dynasty_id=dynasty_id, season_id=season_id))
+
+    return render_template("add_award.html", dynasty=dynasty, season=season)
+
+
+@app.route("/dynasty/<int:dynasty_id>/season/<int:season_id>/edit_awards", methods=["GET", "POST"])
+def edit_awards(dynasty_id, season_id):
+    dynasties = load_dynasties()
+    dynasty = next((d for d in dynasties if d["id"] == dynasty_id), None)
+    if not dynasty:
+        return "Dynasty not found", 404
+
+    season = next((s for s in dynasty["coach"]["seasons"] if s["id"] == season_id), None)
+    if not season:
+        return "Season not found", 404
+
+    if request.method == "POST":
+        # Replace achievements with new submitted list
+        new_achievements = []
+        awards = request.form.getlist("award")
+        types = request.form.getlist("type")
+        players = request.form.getlist("player")
+
+        for i in range(len(awards)):
+            entry = {"type": types[i], "award": awards[i]}
+            if types[i] == "Player" and players[i]:
+                entry["player"] = players[i]
+            new_achievements.append(entry)
+
+        season["achievements"] = new_achievements
+        save_dynasties(dynasties)
+
+        return redirect(url_for("season_achievements", dynasty_id=dynasty_id, season_id=season_id))
+
+    return render_template("edit_awards.html", dynasty=dynasty, season=season)
+
+
+# -------------------------------
 # Run the app
 # -------------------------------
 if __name__ == "__main__":

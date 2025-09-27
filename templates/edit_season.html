@@ -7,13 +7,19 @@
 <body>
     <h1>Edit Season ({{ season.year }}) for {{ dynasty.coach.first_name }} {{ dynasty.coach.last_name }}</h1>
     <form method="POST">
-        <input type="number" name="year" value="{{ season.year }}" required><br>
-        <input type="number" name="wins" value="{{ season.wins }}" required><br>
-        <input type="number" name="losses" value="{{ season.losses }}" required><br>
-        <input type="text" name="bowl_game" value="{{ season.bowl_game }}"><br>
-        <input type="text" name="trophies" value="{{ season.trophies | join(', ') }}"><br>
+        <input type="number" name="year" value="{{ season.year }}" placeholder="Season Year (e.g., 2025)" required>
+        <input type="text" name="team" value="{{ season.team }}" placeholder="Team Name (e.g., Texas A&M)" required>
+        <input type="number" name="wins" value="{{ season.wins }}" placeholder="Number of Wins" required>
+        <input type="number" name="losses" value="{{ season.losses }}" placeholder="Number of Losses" required>
         <button type="submit">Update Season</button>
     </form>
+
+    <div class="season-actions">
+        <a class="btn-link" href="{{ url_for('season_achievements', dynasty_id=dynasty.id, season_id=season.id) }}">
+            Manage Achievements
+        </a>
+    </div>
+
     <a class="back-link" href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">Back to Dynasty</a>
 </body>
 </html>

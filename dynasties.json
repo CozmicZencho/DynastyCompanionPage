@@ -15,64 +15,61 @@
                     "year": 2025,
                     "wins": 12,
                     "losses": 2,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 2,
                     "year": 2026,
                     "wins": 9,
                     "losses": 4,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 3,
                     "year": 2027,
                     "wins": 16,
                     "losses": 0,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 4,
                     "year": 2029,
                     "wins": 15,
                     "losses": 1,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 5,
                     "year": 2030,
                     "wins": 12,
                     "losses": 2,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 6,
                     "year": 2031,
                     "wins": 15,
                     "losses": 1,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 7,
                     "year": 2032,
                     "wins": 15,
                     "losses": 1,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": []
                 },
                 {
                     "id": 8,
                     "year": 2033,
                     "wins": 16,
                     "losses": 0,
-                    "bowl_game": "",
-                    "trophies": []
+                    "achievements": [
+                        {
+                            "type": "Team",
+                            "award": "National Championship"
+                        }
+                    ]
                 }
             ]
         }
@@ -93,9 +90,15 @@
                     "year": 2025,
                     "wins": 13,
                     "losses": 1,
-                    "bowl_game": "Peach Bowl",
-                    "trophies": [
-                        "SEC Championship Trophy"
+                    "achievements": [
+                        {
+                            "type": "Team",
+                            "award": "Peach Bowl"
+                        },
+                        {
+                            "type": "Team",
+                            "award": "SEC Championship Trophy"
+                        }
                     ]
                 }
             ]

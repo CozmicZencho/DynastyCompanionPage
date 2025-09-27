@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Achievements - {{ dynasty.name }} {{ season.year }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{ dynasty.name }} - {{ season.year }} Achievements</h1>
+
+    {% if season.achievements %}
+        <div class="info-card">
+            <ul>
+                {% for a in season.achievements %}
+                    <li>
+                        {% if a.type == "Player" %}
+                            <strong>{{ a.player }}</strong> – {{ a.award }}
+                        {% elif a.type == "Coach" %}
+                            Coach Award: {{ a.award }}
+                        {% else %}
+                            Team Award: {{ a.award }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>No achievements recorded for this season.</p>
+    {% endif %}
+
+    <div class="season-actions">
+        <a class="btn-link" href="{{ url_for('add_award', dynasty_id=dynasty.id, season_id=season.id) }}">Add Award</a>
+        <a class="btn-link" href="{{ url_for('edit_awards', dynasty_id=dynasty.id, season_id=season.id) }}">Edit Awards</a>
+    </div>
+
+    <a class="back-link" href="{{ url_for('dynasty_page', dynasty_id=dynasty.id) }}">Go Back to Dynasty</a>
+</body>
+</html>

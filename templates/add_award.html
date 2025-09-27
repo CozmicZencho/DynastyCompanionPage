@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Award - {{ season.year }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add Award to {{ dynasty.name }} - {{ season.year }}</h1>
+    <form action="{{ url_for('add_award', dynasty_id=dynasty.id, season_id=season.id) }}" method="POST">
+        <label for="type">Award Type:</label>
+        <select name="type" required>
+            <option value="Team">Team Award</option>
+            <option value="Coach">Coach Award</option>
+            <option value="Player">Player Award</option>
+        </select>
+
+        <label for="award">Award:</label>
+        <select name="award" required>
+            <optgroup label="Team Awards">
+                <option>National Championship</option>
+                <option>Conference Championship</option>
+                <option>Rose Bowl</option>
+                <option>Sugar Bowl</option>
+                <!-- TODO: add list of all bowls -->
+            </optgroup>
+            <optgroup label="Coach Awards">
+                <option>Bear Bryant</option>
+                <option>Broyles</option>
+            </optgroup>
+            <optgroup label="Player Awards">
+                <option>Heisman</option>
+                <option>Davey O'Brien</option>
+                <option>Fred Biletnikoff</option>
+                <option>Doak Walker</option>
+                <option>Butkus</option>
+                <!-- Add rest of the list -->
+            </optgroup>
+        </select>
+
+        <label for="player">Player Name (only if Player Award):</label>
+        <input type="text" name="player">
+
+        <button type="submit">Add Award</button>
+    </form>
+
+    <a class="back-link" href="{{ url_for('season_achievements', dynasty_id=dynasty.id, season_id=season.id) }}">Cancel</a>
+</body>
+</html>
