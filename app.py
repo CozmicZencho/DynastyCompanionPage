@@ -188,10 +188,11 @@ def edit_season(dynasty_id, season_id):
 
     if request.method == "POST":
         season["year"] = int(request.form["year"])
+        season["team"] = request.form["team"]  
         season["wins"] = int(request.form["wins"])
         season["losses"] = int(request.form["losses"])
-        season["bowl_game"] = request.form.get("bowl_game", "")
-        season["trophies"] = [t.strip() for t in request.form.get("trophies", "").split(",") if t.strip()]
+        if "achievements" not in season:
+            season["achievements"] = []
         save_dynasties(dynasties)
         return redirect(url_for("dynasty_page", dynasty_id=dynasty_id))
 
